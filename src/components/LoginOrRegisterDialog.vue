@@ -1,24 +1,24 @@
 <template>
-  <main class="login-or-register-window">
+  <div class="login-or-register-dialog">
     <div class="top">
       <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
         <el-tab-pane label="登录" name="login">
-          <LoginWindow></LoginWindow>
+          <LoginDialog></LoginDialog>
         </el-tab-pane>
         <el-tab-pane label="注册" name="register">
-          <RegisterWindow></RegisterWindow>
+          <RegisterDialog></RegisterDialog>
         </el-tab-pane>
       </el-tabs>
     </div>
-  </main>
+  </div>
 </template>
 
 <script setup lang="ts">
 import axios from 'axios'
 import type { TabsPaneContext } from 'element-plus/lib/components/tabs/src/constants.js'
 import { ref } from 'vue'
-import LoginWindow from './LoginWindow.vue'
-import RegisterWindow from './RegisterWindow.vue'
+import LoginDialog from './LoginDialog.vue'
+import RegisterDialog from './RegisterDialog.vue'
 
 
 let activeName = ref<string>('login')
@@ -30,9 +30,11 @@ const handleClick = (tab: TabsPaneContext, event: Event) => {
 
 
 <style scoped lang="less">
-.login-or-register-window {
+@import url(../assets/colors.less);
+
+.login-or-register-dialog {
   .top {
-    background-color: aliceblue;
+    background-color: @dialog-backgroup-color;
   }
 }
 </style>

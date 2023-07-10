@@ -1,5 +1,5 @@
 <template>
-  <main class="register-window">
+  <div class="register-dialog">
     <el-form label-width="80px" class="form">
       <el-form-item label="用户名">
         <el-input placeholder="请输入用户名" v-model="username" />
@@ -18,7 +18,7 @@
         <el-button @click="register">注册</el-button>
       </el-form-item>
     </el-form>
-  </main>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -41,8 +41,9 @@ function register() {
 
 
 <style scoped lang="less">
-.register-window {
-  background-color: aliceblue;
+@import url(../assets/colors.less);
+.register-dialog {
+  background-color: @dialog-backgroup-color;
   position: relative;
   min-width: 400px;
   min-height: 400px;
