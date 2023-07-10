@@ -43,19 +43,8 @@ function register() {
 <style scoped lang="less">
 @import url(../assets/colors.less);
 .register-dialog {
-  background-color: @dialog-backgroup-color;
-  position: relative;
-  min-width: 400px;
-  min-height: 400px;
+  margin: 50px 80px;
   .form {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    width: 80%;
-    height: 80%;
   }
 }
 </style>

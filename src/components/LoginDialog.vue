@@ -31,20 +31,6 @@ function login() { }
 @import url(../assets/colors.less);
 
 .login-dialog {
-    background-color: @dialog-backgroup-color;
-    position: relative;
-    min-width: 400px;
-    min-height: 250px;
-
-    .form {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        margin: auto;
-        width: 80%;
-        height: 40%;
-    }
+    margin: 50px 80px;
 }
 </style>

@@ -1,15 +1,13 @@
 <template>
   <div class="login-or-register-dialog">
-    <div class="top">
-      <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
-        <el-tab-pane label="登录" name="login">
-          <LoginDialog></LoginDialog>
-        </el-tab-pane>
-        <el-tab-pane label="注册" name="register">
-          <RegisterDialog></RegisterDialog>
-        </el-tab-pane>
-      </el-tabs>
-    </div>
+    <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
+      <el-tab-pane label="登录" name="login">
+        <LoginDialog></LoginDialog>
+      </el-tab-pane>
+      <el-tab-pane label="注册" name="register">
+        <RegisterDialog></RegisterDialog>
+      </el-tab-pane>
+    </el-tabs>
   </div>
 </template>
 
@@ -33,8 +31,9 @@ const handleClick = (tab: TabsPaneContext, event: Event) => {
 @import url(../assets/colors.less);
 
 .login-or-register-dialog {
-  .top {
-    background-color: @dialog-backgroup-color;
+  background-color: @dialog-backgroup-color;
+  .el-tabs {
+    padding: 30px;
   }
 }
 </style>

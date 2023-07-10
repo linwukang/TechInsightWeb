@@ -5,8 +5,16 @@
             class="infinite-list" 
             style="overflow: auto" 
             :infinite-scroll-disabled="disabled">
-            <li v-for="i in articleIdList" :key="i" class="infinite-list-item">
-                <ArticlePreview :articleId="i" :publisherId="i" :title="i + '-title'" :content="i + '-content'" />
+            <li v-for="art in articleList" :key="art.id" class="infinite-list-item">
+                <ArticlePreview 
+                    :articleId="art.id" 
+                    :publisherId="art.publisher.id" 
+                    :publisherName="art.publisher.userName"
+                    :publisherHome="art.publisher.homeUrl"
+                    :publisherProfile="art.publisher.profileUrl"
+                    :title="art.title" 
+                    :content="art.content" 
+                    :url="art.url" />
             </li>
         </ul>
         <p v-if="loading">Loading...</p>
@@ -15,9 +23,22 @@
 </template>
 
 <script setup lang="ts">
+import type { Action } from 'element-plus/lib/components/index.js';
 import ArticlePreview from './ArticlePreview.vue';
 const props = defineProps<{
-    articleIdList: number[],
+    articleList: {      // 文章列表
+        id: number,         // 文章 id
+        title: string,      // 文章标题
+        content: string,    // 文章内容
+        url: string,
+        publisher: {
+            id: number,         // 作者 id
+            userName: string,   // 作者名称
+            homeUrl: string,    // 作者主页地址
+            profileUrl: string, // 作者头像地址
+        }
+    }[],
+    load: () => void
 }>()
 
 import { computed, ref } from 'vue'
@@ -25,10 +46,7 @@ import { computed, ref } from 'vue'
 const loading = ref(false)
 const noMore = ref(false)
 const disabled = computed(() => loading.value || noMore.value)
-const load = () => {
-    //   loading.value = true
-    //   noMore.value = true
-}
+
 </script>
 
 <style lang="less" scoped>
@@ -49,6 +67,10 @@ const load = () => {
             .article-preview {
                 width: 100%;
             }
+
+            border-width: 0 0 1px 0;
+            border-color: #eeeeee;
+            border-style: solid;
         }
 
         .infinite-list-item+.list-item {
