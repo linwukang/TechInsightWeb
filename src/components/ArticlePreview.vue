@@ -20,7 +20,7 @@ const props = defineProps<{
     publisherHome:string,
     publisherProfile:string,
     url: string
-}>();
+}>()
 </script>
 
 <style lang="less" scoped>
@@ -41,8 +41,40 @@ const props = defineProps<{
         .content {
             font-size: 17px;
             color: @article-preview-content-font-color;
+            min-height: 140px;
+            position: relative;
+            line-height: 20px;
+            height: 40px;
+            overflow: hidden;
+        }
+        .content::after {
+            content: ". . ."; 
+            position: absolute; 
+            bottom: 0; 
+            right: 0; 
+            padding-left: 40px;
+            background: -webkit-linear-gradient(left, transparent, #fff 55%);
+            background: -moz-linear-gradient(left, transparent, #fff 55%);
+            background: -o-linear-gradient(left, transparent, #fff 55%);
+            background: linear-gradient(to right, transparent, #fff 55%);
         }
     }
+    .main:hover {
+        background: none; 
+        position: relative;
+    }
+
+    .main:hover::after {
+        display: block;
+        content: ' ';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
     .publisher {
         padding: 2px 10px;
         overflow: hidden;

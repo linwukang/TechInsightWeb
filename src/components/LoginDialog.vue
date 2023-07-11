@@ -16,7 +16,9 @@
 </template>
 
 <script setup lang="ts">
+import router from '@/router';
 import axios from 'axios'
+import { ElNotification } from 'element-plus/lib/components/index.js';
 import {
     ref
 } from 'vue'
@@ -24,7 +26,42 @@ import {
 let username = ref<string>("")
 let password = ref<string>("")
 
-function login() { }
+function login() { 
+    axios
+        .get("/Account/login", 
+            {params: {
+                username: username.value, 
+                password: password.value
+            }})
+        .then(response => {
+            if (response.data.logged) {
+                let token = response.data.token as string
+                let userId = response.data.userId as number
+                localStorage.setItem("token", token)
+                localStorage.setItem("userId", userId.toString())
+
+                // 跳转到主页
+                router.push("/")
+            }
+            else {
+                ElNotification({
+                    title: '登录失败',
+                    message: response.data.message,
+                    type: 'warning',
+                    duration: 2000
+                })
+            }
+        })
+        .catch(error => {
+            console.log(error)
+            ElNotification({
+                title: '登录失败',
+                message: '服务器繁忙',
+                type: 'error',
+                duration: 2000
+            })
+        })
+}
 </script>
 
 <style lang="less" scoped>

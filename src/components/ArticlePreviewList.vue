@@ -9,7 +9,7 @@
                 <ArticlePreview 
                     :articleId="art.id" 
                     :publisherId="art.publisher.id" 
-                    :publisherName="art.publisher.userName"
+                    :publisherName="art.publisher.username"
                     :publisherHome="art.publisher.homeUrl"
                     :publisherProfile="art.publisher.profileUrl"
                     :title="art.title" 
@@ -33,7 +33,7 @@ const props = defineProps<{
         url: string,
         publisher: {
             id: number,         // 作者 id
-            userName: string,   // 作者名称
+            username: string,   // 作者名称
             homeUrl: string,    // 作者主页地址
             profileUrl: string, // 作者头像地址
         }
