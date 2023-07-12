@@ -12,7 +12,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import axios from "axios";
+import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 
 const route = useRoute()
@@ -41,6 +42,18 @@ const userInfo = ref<{
 2021年10月18日，特朗普在华盛顿地区法院对美国国会众议院特别委员会提起诉讼。同年，11月11日，美国联邦上诉法院批准前总统特朗普的请求，暂时停止了美国国家档案馆在12日的最后期限前向众议院特别委员会提交调查国会山骚乱事件所需要的白宫文件和相关记录。`,
 })
 
+onMounted(() => {
+  axios.get('UserInfo/user-info', {
+    params: {
+      id: (route.query as any).userId
+    }
+  })
+  .then(response => {
+    userInfo.value = {
+      ...response.data
+    }
+  })
+})
 
 
 </script>
@@ -76,15 +89,12 @@ const userInfo = ref<{
       border-radius: 25px;
       line-height: 20px;
       margin-left: 30px;
+      margin-top: 15px;
       font-size: 10px;
       font-weight: bold;
       color: #555;
       background-color: lightgreen;
-      position: absolute;
-      top: 0;
-      left: 160px;
-      bottom: 0;
-      margin: auto;
+      float: left;
     }
   }
 

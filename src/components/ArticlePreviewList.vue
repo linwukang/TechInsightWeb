@@ -8,10 +8,10 @@
             <li v-for="art in articleList" :key="art.id" class="infinite-list-item">
                 <ArticlePreview 
                     :articleId="art.id" 
-                    :publisherId="art.publisher.id" 
-                    :publisherName="art.publisher.username"
-                    :publisherHome="art.publisher.homeUrl"
-                    :publisherProfile="art.publisher.profileUrl"
+                    :publisherId="art.publisherId" 
+                    :publisherName="art.publisherUsername"
+                    :publisherHome="art.publisherHomeUrl"
+                    :publisherProfile="art.publisherProfilePictureUrl"
                     :title="art.title" 
                     :content="art.content" 
                     :url="art.url" />
@@ -31,12 +31,11 @@ const props = defineProps<{
         title: string,      // 文章标题
         content: string,    // 文章内容
         url: string,
-        publisher: {
-            id: number,         // 作者 id
-            username: string,   // 作者名称
-            homeUrl: string,    // 作者主页地址
-            profileUrl: string, // 作者头像地址
-        }
+        publisherId: number,         // 作者 id
+        publisherUsername: string,   // 作者名称
+        publisherHomeUrl: string,    // 作者主页地址
+        publisherProfilePictureUrl: string, // 作者头像地址
+        
     }[],
     load: () => void
 }>()

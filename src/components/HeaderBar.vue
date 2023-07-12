@@ -14,7 +14,7 @@
         </div>
         <div class="my">
             <router-link :to="userHome">
-                <img class="profile" :src="profilePictureUrl" :alt="username">
+                <img class="profile" :src="profilePicture" :alt="username">
                 <p class="username">{{ username }}</p>
             </router-link>
         </div>
@@ -24,17 +24,27 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue"
 import { Search } from '@element-plus/icons-vue'
+import axios from "axios";
+import { useRoute } from "vue-router";
 
 const input = ref("")
 const placeholder = ref("拜登当众拉屎")
-const username = ref("Trump")
-const profilePictureUrl = ref("https://world.chinadaily.com.cn/img/attachement/jpg/site1/20170302/eca86bd9e2fa1a21c7630b.jpg")
-const userHome = ref("/user-home?userId=1")
+const username = ref("")
+const profilePicture = ref("")
+const userHome = ref("/user-home?userId=" + localStorage.getItem("userId"))
+
 
 onMounted(() => {
-
+  axios.get('UserInfo/user-info', {
+    params: {
+      id: localStorage.getItem("userId")
+    }
+  })
+  .then(response => {
+    username.value = response.data.username
+    profilePicture.value = response.data.profilePicture
+  })
 })
-
 </script>
 
 <style lang="less" scoped>
