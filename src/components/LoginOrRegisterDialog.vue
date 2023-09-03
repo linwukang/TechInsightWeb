@@ -13,8 +13,8 @@
 
 <script setup lang="ts">
 import axios from 'axios'
-import type { TabsPaneContext } from 'element-plus/lib/components/tabs/src/constants.js'
-import { ref } from 'vue'
+import type {TabsPaneContext} from 'element-plus/lib/components/tabs/src/constants.js'
+import {ref} from 'vue'
 import LoginDialog from './LoginDialog.vue'
 import RegisterDialog from './RegisterDialog.vue'
 
@@ -31,7 +31,8 @@ const handleClick = (tab: TabsPaneContext, event: Event) => {
 @import url(../assets/colors.less);
 
 .login-or-register-dialog {
-  background-color: @dialog-backgroup-color;
+  background-color: @dialog-background-color;
+
   .el-tabs {
     padding: 30px;
   }

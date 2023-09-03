@@ -11,6 +11,7 @@ import LoginOrRegisterDialog from '@/components/LoginOrRegisterDialog.vue'
 <style scoped lang="less">
 .login-or-register-view {
   position: relative;
+
   .login-or-register-dialog {
     width: 500px;
     top: 0;

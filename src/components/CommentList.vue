@@ -1,37 +1,19 @@
 <template>
-    <div class="comment-list">
-        <ul class="comment-list-ul">
-            <li class="comment-item" v-for="comment in commentList" :key="comment.id">
-                <Comment
-                    :id="comment.id"
-                    :profile-url="comment.profileUrl"
-                    :user-home="comment.userHome"
-                    :username="comment.username"
-                    :publish-date="comment.publishDate"
-                    :content="comment.content"
-                    :likes="comment.likes"
-                    :dislikes="comment.dislikes"
-                    >
-                </Comment>
-            </li>
-        </ul>
+  <div class="comment-list">
+    <ul class="comment-list-ul">
+      <li class="comment-item" v-for="comment in commentList" :key="comment.id">
+        <Comment :comment="comment"/>
+      </li>
+    </ul>
 
-    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
-import Comment from './Comment.vue'
+import CommentInfo from "@/type/CommentInfo";
+import Comment from "@/components/Comment.vue";
 
-const props = defineProps<{commentList: {
-    id: number,
-    profileUrl: string,
-    userHome: string,
-    username: string,
-    publishDate: Date,
-    content: string,
-    likes: number,
-    dislikes: number
-}[]}>()
+const props = defineProps<{ commentList: CommentInfo[] }>()
 
 </script>
 
@@ -39,13 +21,14 @@ const props = defineProps<{commentList: {
 @import url(../assets/colors.less);
 
 .comment-list {
-    .comment-list-ul {
-        list-style-type: none;
-        .comment-item {
-            margin-bottom: 20px;
-            padding-bottom: 20px;
-            border-bottom: 1px #eee solid;
-        }
+  .comment-list-ul {
+    list-style-type: none;
+
+    .comment-item {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px #eee solid;
     }
+  }
 }
 </style>
